@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deals | SlevaMap Prague</title><meta name="description" content="Find student and regular discounts in Prague.">
+<link rel="stylesheet" href="css/style.css"></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<p class="notice">Student project, used for teaching only. All deals are EXAMPLE DATA.</p>
+<header class="top"><a class="logo" href="index.html">SlevaMap <span>Prague</span></a>
+<button class="menu" aria-expanded="false" aria-controls="nav">Menu</button>
+<nav id="nav" aria-label="Main"><ul><li><a href="index.html">Home</a></li><li><a href="deals.html" aria-current="page">Deals</a></li><li><a href="shops.html">Shops</a></li><li><a href="submit.html">Submit a deal</a></li></ul></nav></header>
+<main id="main"><h1>Deals</h1><form class="filters" aria-label="Filter deals"><div><label for="cat">Category</label><select id="cat"><option value="all">All</option><option value="grocery">Grocery</option><option value="fashion">Fashion</option><option value="food">Food and pubs</option><option value="games">Games</option><option value="services">Services</option></select></div>
+<div><label for="aud">Who is it for</label><select id="aud"><option value="all">Everyone and students</option><option value="student">Students only</option><option value="everyone">No student status needed</option></select></div></form>
+<p id="count" role="status" aria-live="polite"></p><div class="split"><ul class="grid" id="list"><li class="deal" data-cat="grocery" data-aud="student"><span class="tag">-10%</span><h3><a href="deal.html">10% off weekly shop</a></h3>
+<p>Example Grocery</p><p class="meta">For: Students. Proof: Student ID. Valid until 31 Dec 2026.</p></li><li class="deal" data-cat="fashion" data-aud="everyone"><span class="tag">2 for 1</span><h3><a href="deal.html">2 for 1 jeans</a></h3>
+<p>Example Fashion</p><p class="meta">For: Everyone. Proof: None. Valid until 15 Nov 2026.</p></li><li class="deal" data-cat="food" data-aud="student"><span class="tag">-30%</span><h3><a href="deal.html">Lager 40 Kč, Mon to Thu</a></h3>
+<p>Example Pub</p><p class="meta">For: Students. Proof: ISIC. Valid weekly.</p></li><li class="deal" data-cat="games" data-aud="everyone"><span class="tag">-50%</span><h3><a href="deal.html">Indie game bundle</a></h3>
+<p>Example Games</p><p class="meta">For: Everyone. Proof: Free account. Valid until 5 Nov 2026.</p></li><li class="deal" data-cat="food" data-aud="everyone"><span class="tag">Free</span><h3><a href="deal.html">Free coffee with lunch</a></h3>
+<p>Example Cafe</p><p class="meta">For: Everyone. Proof: Loyalty app. Valid this month.</p></li><li class="deal" data-cat="services" data-aud="student"><span class="tag">-40%</span><h3><a href="deal.html">Semester transit pass</a></h3>
+<p>Example Transport</p><p class="meta">For: Students. Proof: Student ID. Valid this semester.</p></li></ul><aside class="map" aria-label="Map placeholder"><p>Map placeholder (API in next semester)</p></aside></div></main>
+<footer><p>Offers must be verified with the shop before use.</p><p>SlevaMap Prague, university course project.</p></footer>
+<script src="js/app.js"></script></body></html>
