@@ -39,7 +39,7 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
 /* 3. HEADER (Flex) ----------------------------------------------------------- */
 .notice { margin: 0; padding: .45rem 1rem; text-align: center; font-size: .85rem; color: var(--bg); background: var(--ink); }
 .top { position: sticky; top: 0; z-index: 10; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
-       padding: 1rem 1.25rem; background: rgba(244, 240, 234, .92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); transition: padding .3s; }
+       padding: 1rem 1.25rem; background: rgba(210, 209, 208, 0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); transition: padding .3s; }
 .top.small { padding-block: .5rem; }
 .logo { font: 400 1.6rem Georgia, serif; text-decoration: none; letter-spacing: -.02em; }
 .logo span { color: var(--accent); }
@@ -51,9 +51,11 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
 #progress { position: fixed; top: 0; left: 0; z-index: 20; width: 0; height: 3px; background: var(--accent); }
 
 /* 4. SECTIONS ---------------------------------------------------------------- */
-.hero { display: grid; gap: 2.5rem; align-items: center; margin-top: 2rem; }
-.hero-text > p:not(.eyebrow) { max-width: 34rem; font-size: 1.1rem; color: var(--muted); }
-.hero-art { width: 100%; max-height: 38rem; object-fit: cover; border-radius: 12rem 12rem 1rem 1rem; }   /* arch-shaped picture */
+main > .hero { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.5rem; align-items: center; width: 100vw; min-height: calc(100svh - 7rem); margin: 0 0 var(--gap) calc(50% - 50vw); padding: clamp(2rem, 7vw, 5rem) max(1.25rem, calc((100vw - 76rem) / 2)); background: linear-gradient(90deg, rgba(17, 31, 35, .76) 0%, rgba(17, 31, 35, .60) 48%, rgba(17, 31, 35, .12) 100%), url("../images/Gemini_Generated_Image_6sksxf6sksxf6sks.jpg") center / cover no-repeat; }
+.hero-text { max-width: 46rem; }
+.hero .eyebrow, .hero h1, .hero-text > p:not(.eyebrow), .hero .search label { color: var(--paper); }
+.hero-text > p:not(.eyebrow) { max-width: 34rem; font-size: 1.1rem; }
+.hero .btn.alt { color: var(--ink); background: var(--paper); border-color: var(--paper); }
 .search { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.5rem 0; }
 .search label { width: 100%; font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; }
 .search input { flex: 1 1 12rem; }
@@ -117,9 +119,7 @@ footer li { padding: .2rem 0; }
 .hero-text > :nth-child(3) { animation-delay: .24s; }
 .hero-text > :nth-child(4) { animation-delay: .36s; }
 .hero-text > :nth-child(5) { animation-delay: .48s; }
-.hero-art { animation: reveal 1.4s var(--ease) both; }                              /* arch image unrolls */
 @keyframes rise   { from { opacity: 0; transform: translateY(1.5rem); } to { opacity: 1; transform: none; } }
-@keyframes reveal { from { clip-path: inset(100% 0 0 0); } to { clip-path: inset(0); } }
 .reveal { opacity: 0; transform: translateY(2.5rem); transition: opacity .9s var(--ease), transform .9s var(--ease); transition-delay: calc(var(--i, 0) * 110ms); }
 .reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
@@ -134,7 +134,6 @@ footer li { padding: .2rem 0; }
   #nav ul { display: flex; gap: 2rem; }
   #nav a:not(.btn) { padding: .3rem 0; }
   .small-btn { margin-top: 0; }
-  .hero { grid-template-columns: 1.1fr .9fr; }
   .grid { grid-template-columns: repeat(2, 1fr); }
   .tiles { grid-template-columns: repeat(3, 1fr); }
   .steps { grid-template-columns: repeat(3, 1fr); }
