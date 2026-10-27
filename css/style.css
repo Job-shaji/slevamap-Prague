@@ -6,12 +6,12 @@
 
 /* 1. TOKENS: warm neutrals, one walnut accent, generous spacing -------------- */
 :root {
-  --bg     : #f4f0ea;                    /* ivory page background        */
+  --bg     : #fbf9f5;                    /* ivory page background        */
   --paper  : #fbf9f5;                    /* cards and inputs             */
-  --ink    : #1e1b18;                    /* near-black text              */
+  --ink    : #1b353b;                    /* near-black text              */
   --muted  : #5e574f;                    /* secondary text (AA contrast) */
   --line   : #ddd5ca;                    /* hairline borders             */
-  --accent : #8a6f4e;                    /* walnut                       */
+  --accent : #00506d;                    /* walnut                       */
   --gap    : clamp(3rem, 8vw, 6rem);     /* space between sections       */
   --ease   : cubic-bezier(.2, .7, .2, 1);
 }
