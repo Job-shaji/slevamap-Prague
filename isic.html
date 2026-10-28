@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student plan | SlevaMap Prague</title>
+  <meta name="description" content="Register for an ISIC card and complete the SlevaMap student-plan demo.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <p class="notice">CZU Student project, Only for study purposes.</p>
+  <header class="top">
+    <a class="logo" href="index.html">slevamap<span>.</span></a>
+    <button class="menu" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav" aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="deals.html">Shop</a></li>
+        <li><a href="saved.html">Saved deals</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a class="btn small-btn" href="contact.html#submit">Submit a deal</a>
+    </nav>
+  </header>
+  <main id="main">
+    <p class="eyebrow">Student plan</p>
+    <h1>Register your ISIC card</h1>
+    <section class="plan-callout" aria-labelledby="registration-title">
+      <h2 id="registration-title">Step 1: Register with ISIC</h2>
+      <p>Use the official ISIC website to find and complete the card registration that applies to you.</p>
+      <p><a class="btn" href="https://www.isic.cz/" target="_blank" rel="noopener noreferrer">Visit the official ISIC website</a></p>
+    </section>
+    <section class="verification-panel" aria-labelledby="verification-title">
+      <h2 id="verification-title">Step 2: Continue in this demo</h2>
+      <p class="demo-warning"><strong>Prototype only:</strong> this page does not contact ISIC or verify a card. Continuing sets a demo status in this browser only. Do not enter card numbers or personal information.</p>
+      <form class="form" id="verification-form">
+        <label class="checkbox-label" for="registration-complete">
+          <input id="registration-complete" type="checkbox">
+          I have completed registration on the official ISIC website.
+        </label>
+        <button class="btn" type="submit">Simulate student verification</button>
+        <p id="verification-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+    <p><a href="deals.html">Browse offers</a> · <a href="saved.html">View saved deals</a></p>
+  </main>
+  <footer>
+    <div class="foot">
+      <div><a class="logo" href="index.html">slevamap<span>.</span></a><p>Student and everyday discounts in Prague, curated in one calm place.</p></div>
+      <nav aria-label="Footer"><h2>Explore</h2><ul><li><a href="index.html">Home</a></li><li><a href="deals.html">Shop</a></li><li><a href="saved.html">Saved deals</a></li></ul></nav>
+      <div><h2>Demo note</h2><p>Student verification and saved deals are stored locally in this browser for demonstration only.</p></div>
+    </div>
+  </footer>
+  <script src="js/app.js"></script>
+</body>
+</html>
