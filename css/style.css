@@ -53,7 +53,7 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
 /* 4. SECTIONS ---------------------------------------------------------------- */
 main > .hero { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.5rem; align-items: center; width: 100vw; min-height: calc(100svh - 7rem); margin: 0 0 var(--gap) calc(50% - 50vw); padding: clamp(2rem, 7vw, 5rem) max(1.25rem, calc((100vw - 76rem) / 2)); background: var(--ink); }
 .home-page main > .hero { position: relative; z-index: 0; overflow: hidden; margin-bottom: 0; background: linear-gradient(90deg, rgba(17, 31, 35, .76) 0%, rgba(17, 31, 35, .60) 48%, rgba(17, 31, 35, .12) 100%), url("../images/Gemini_Generated_Image_6sksxf6sksxf6sks.jpg") center / cover no-repeat; }
-.home-page .plan-callout { position: relative; z-index: 1; max-width: 62rem; margin: -5rem auto var(--gap); box-shadow: 0 1.25rem 3rem rgba(27, 53, 59, .16); transition: transform .5s var(--ease), box-shadow .5s var(--ease); }
+.home-page .plan-callout { position: relative; z-index: 1; max-width: 62rem; margin: 3rem auto var(--gap); box-shadow: 0 1.25rem 3rem rgba(27, 53, 59, .16); transition: transform .5s var(--ease), box-shadow .5s var(--ease); }
 .home-page .plan-callout:hover { transform: translateY(-.35rem); box-shadow: 0 1.75rem 3.5rem rgba(27, 53, 59, .2); }
 .hero-text { max-width: 46rem; }
 .hero .eyebrow, .hero h1, .hero-text > p:not(.eyebrow), .hero .search label { color: var(--paper); }
