@@ -3,163 +3,402 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Wireframes | SlevaMap Prague</title>
+<title>Wireframes | Sleva</title>Map Prague</title>
 <style>
-  body {
-    font-family: system-ui, sans-serif;
-    background: #f4f4f4;
-    color: #333;
-    margin: 0;
+  :root {
+    --ink: #2b2b2b;
+    --muted: #8a8a8a;
+    --line: #4a4a4a;
+    --fill: #ececec;
+    --fill-alt: #dedede;
   }
-  main { max-width: 900px; margin: 0 auto; padding: 24px; }
-
-  h1 { font-size: 22px; margin: 0 0 16px; }
-
-  .page { background: #fff; border: 1px solid #ddd; padding: 16px; margin-bottom: 24px; }
-  .page h2 { font-size: 16px; margin: 0 0 12px; }
-  .page h2 small { color: #999; font-weight: normal; font-size: 12px; }
-
-  .wf { border: 1px solid #aaa; background: #fafafa; padding: 12px; }
-  .wf > * + * { margin-top: 10px; }
-
-  .box {
-    border: 1px solid #888;
-    background: #ececec;
-    padding: 8px;
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: #f6f6f6;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .doc-header {
+    padding: 32px 24px;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+  }
+  .doc-header h1 { margin: 0 0 4px; font-size: 24px; }
+  .doc-header p { margin: 0; color: var(--muted); font-size: 14px; }
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    margin-top: 16px;
     font-size: 12px;
-    text-align: center;
     color: #555;
   }
-  .img { background: repeating-linear-gradient(45deg, #ddd 0 4px, #eee 4px 8px); }
-  .btn { background: #c9c9c9; }
-  .row { display: flex; gap: 10px; }
-  .row > * { flex: 1; }
-  .footer { display: flex; gap: 10px; }
-  .footer > * { flex: 1; height: 56px; }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .legend .swatch {
+    width: 16px; height: 12px;
+    border: 1px solid var(--line);
+    background: var(--fill);
+    display: inline-block;
+  }
+  .legend .swatch.img { background: repeating-linear-gradient(45deg, #d8d8d8 0 4px, #eee 4px 8px); }
+  main { padding: 24px; max-width: 1080px; margin: 0 auto; }
+  .page {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 28px;
+  }
+  .page-title {
+    display: flex; align-items: baseline; gap: 10px;
+    margin: 0 0 12px;
+  }
+  .page-title h2 { margin: 0; font-size: 18px; }
+  .page-title .route { color: var(--muted); font-size: 12px; }
 
-  .h24 { height: 24px; }
-  .h40 { height: 40px; }
+  .wf {
+    border: 1px solid #999;
+    background: #fafafa;
+  }
+  .box {
+    border: 1px solid var(--line);
+    background: var(--fill);
+    color: #555;
+    font-size: 11px;
+    text-align: center;
+    padding: 8px 6px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+  }
+  .box.img {
+    background: repeating-linear-gradient(45deg, #d8d8d8 0 4px, #eee 4px 8px);
+    color: #777;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .box.img::before { content: "\2715"; margin-right: 6px; font-size: 14px; }
+  .box.btn { background: #c9c9c9; border-style: solid; }
+  .box.btn::before { content: "[  "; }
+  .box.btn::after { content: "  ]"; }
+  .box.text {
+    background: transparent; border: none; color: var(--muted);
+    text-align: left; text-transform: none; letter-spacing: 0; padding: 4px 0;
+  }
+  .row { display: flex; gap: 8px; }
+  .col { display: flex; flex-direction: column; gap: 8px; }
+  .grow { flex: 1; }
+
+  .notice-bar { border: none; border-bottom: 1px dashed var(--line); background: transparent; color: var(--muted); font-size: 10px; text-align: center; padding: 4px; text-transform: none; letter-spacing: 0; }
+  .shell { padding: 10px; display: flex; flex-direction: column; gap: 10px; }
+  .topbar { display: flex; align-items: center; gap: 10px; }
+  .logo { width: 110px; height: 28px; }
+  .nav { flex: 1; height: 28px; text-align: left; }
+  .menu { width: 70px; height: 28px; }
+  .main-area { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+  .footer { display: flex; gap: 10px; }
+  .footer > div { flex: 1; height: 70px; }
+
+  .two-col { display: flex; gap: 10px; }
+  .two-col > * { flex: 1; }
+  .three-col { display: flex; gap: 10px; }
+  .three-col > * { flex: 1; }
+  .four-col { display: flex; gap: 10px; }
+  .four-col > * { flex: 1; }
+  .five-col { display: flex; gap: 10px; }
+  .five-col > * { flex: 1; }
+
+  .tall { height: 120px; }
+  .h140 { height: 140px; }
+  .h90 { height: 90px; }
   .h60 { height: 60px; }
-  .h120 { height: 120px; }
+  .h40 { height: 40px; }
+  .h24 { height: 24px; }
+  .w40 { width: 40%; }
+  .w50 { width: 50%; }
+  .w60 { width: 60%; }
+  .center { margin-left: auto; margin-right: auto; }
+
+  .note {
+    margin: 10px 0 0; padding: 10px 12px;
+    background: #f3f3f3; border-left: 3px solid #aaa;
+    color: #555; font-size: 12px;
+  }
+  .note code { background: #e6e6e6; padding: 1px 4px; border-radius: 3px; }
 </style>
 </head>
 <body>
-<main>
-
-  <h1>SlevaMap Prague — Wireframes</h1>
-
-  <section class="page">
-    <h2>Home <small>index.html</small></h2>
-    <div class="wf">
-      <div class="box h24">Top bar: logo + nav</div>
-      <div class="box h120">Hero: title + search + buttons</div>
-      <div class="box h40">Student plan banner</div>
-      <div class="row">
-        <div class="box h40">Stats</div>
-      </div>
-      <div class="box h60">Category tiles (5)</div>
-      <div class="box h60">Featured deals (3 cards)</div>
-      <div class="box h60">How it works (3 steps)</div>
-      <div class="footer">
-        <div class="box">Footer</div>
-      </div>
+  <header class="doc-header">
+    <h1>SlevaMap Prague &mdash; Wireframes</h1>
+    <p>Low-fidelity layout</p> reference for the client-side prototype. Content is placeholders, not final copy.</p>
+    <div class="legend">
+      <span><i class="swatch"></i> Block / section</span>
+      <span><i class="swatch img"></i> Image placeholder</span>
+      <span><i class="swatch" style="background:#c9c9c9"></i> Button / CTA</span>
+      <span><i class="swatch" style="background:transparent"></i> Text / label</span>
     </div>
-  </section>
+  </header>
 
-  <section class="page">
-    <h2>Shop / Deals <small>deals.html</small></h2>
-    <div class="wf">
-      <div class="box h24">Top bar: logo + nav</div>
-      <div class="box h40">Title + filter bar</div>
-      <div class="row">
-        <div class="box h60">Deal card</div>
-        <div class="box h60">Deal card</div>
-        <div class="box h60">Deal card</div>
+  <main>
+
+    <!-- ============ HOME ============ -->
+    <section class="page">
+      <div class="page-title"><h2>Home</h2></h2><span class="route">index.html</span></div>
+      <div class="wf">
+        <div class="notice-bar box">Notice bar (student project disclaimer)</div>
+        <div class="shell">
+          <div class="topbar">
+            <div class="box logo">Logo</div>
+            <div class="box nav">Nav: Home · Shop · Saved · About · Contact</div>
+            <div class="box btn menu">Menu</div>
+          </div>
+          <div class="main-area">
+            <div class="box h140">Hero — eyebrow + H1 + intro text</div>
+            <div class="box h40">Search form [ input ] [ Search ]</div>
+            <div class="box h24 w60 center btn">CTA row: Student deals · Browse all offers</div>
+            <div class="box h60">Student plan callout — ISIC registration banner + CTA</div>
+            <div class="four-col">
+              <div class="box h60">Stat: deals</div>
+              <div class="box h60">Stat: shops</div>
+              <div class="box h60">Stat: categories</div>
+              <div class="box h60">Stat: saving %</div>
+            </div>
+            <div class="box text">Collections — Shop by category</div>
+            <div class="five-col">
+              <div class="box img h90">Grocery</div>
+              <div class="box img h90">Fashion</div>
+              <div class="box img h90">Food &amp; pubs</div>
+              <div class="box img h90">Games</div>
+              <div class="box img h90">Services</div>
+            </div>
+            <div class="box text">Featured — This week's deals</div>
+            <div class="three-col">
+              <div class="col"><div class="box img h60"></div><div class="box h24">Deal card</div></div>
+              <div class="col"><div class="box img h60"></div><div class="box h24">Deal card</div></div>
+              <div class="col"><div class="box img h60"></div><div class="box h24">Deal card</div></div>
+            </div>
+            <div class="box text">How it works — Three steps</div>
+            <div class="three-col">
+              <div class="box h60">01 Find</div>
+              <div class="box h60">02 Check</div>
+              <div class="box h60">03 Save</div>
+            </div>
+            <div class="box h40">Team / Project authors</div>
+          </div>
+          <div class="footer">
+            <div class="box">Footer: logo + tagline</div>
+            <div class="box">Footer nav</div>
+            <div class="box">Footer note</div>
+          </div>
+        </div>
       </div>
-      <div class="row">
-        <div class="box h60">Deal card</div>
-        <div class="box h60">Deal card</div>
-        <div class="box h60">Deal card</div>
+    </section>
+
+    <!-- ============ DEALS / SHOP ============ -->
+    <section class="page">
+      <div class="page-title"><h2>Shop / Deals listing</h2><span class="route">deals.html</span></div>
+      <div class="</h2>wf">
+        <div class="shell">
+          <div class="topbar">
+            <div class="box logo">Logo</div>
+            <div class="box nav">Nav</div>
+            <div class="box btn menu">Menu</div>
+          </div>
+          <div class="main-area">
+            <div class="box h40">Page title + intro</div>
+            <div class="box h40">Filter bar: [ Category ▾ ] [ Audience ▾ ]</div>
+            <div class="box text">Result count / active filter</div>
+            <div class="three-col">
+              <div class="col"><div class="box img h60"></div><div class="box h24">Deal card</div></div>
+              <div class="col"><div class="box img h60"></div><div class="box h24">Deal card</div></div>
+              <div class="col"><div class="box img h60"></div><div class="box h24">Deal card</div></div>
+            </div>
+            <div class="three-col">
+              <div class="col"><div class="box img h60"></div><div class="box h24">Deal card</div></div>
+              <div class="col"><div class="box img h60"></div><div class="box h24">Deal card</div></div>
+              <div class="col"><div class="box img h60"></div><div class="box h24">Deal card</div></div>
+            </div>
+            <div class="box h24 center w40 btn">Load more</div>
+            <div class="box h40">Aside: note / category links</div>
+          </div>
+          <div class="footer">
+            <div class="box">Footer: logo + tagline</div>
+            <div class="box">Footer nav</div>
+            <div class="box">Footer note</div>
+          </div>
+        </div>
       </div>
-      <div class="footer">
-        <div class="box">Footer</div>
+    </section>
+
+    <!-- ============ DEAL DETAIL ============ -->
+    <section class="page">
+      <div class="page-title"><h2>Deal detail</h2><span</h2> class="route">deal.html</span></div>
+      <div class="wf">
+        <div class="shell">
+          <div class="topbar">
+            <div class="box logo">Logo</div>
+            <div class="box nav">Nav</div>
+            <div class="box btn menu">Menu</div>
+          </div>
+          <div class="main-area">
+            <div class="box h24 text">Breadcrumb: Shop / Deal title</div>
+            <div class="two-col">
+              <div class="box img h140">Hero image</div>
+              <div class="col">
+                <div class="box h24">Tag + H1 title</div>
+                <div class="box h60 text">Description paragraph</div>
+                <div class="box h90 text">Facts list (For · Proof · Available · Prague)</div>
+                <div class="row">
+                  <div class="box btn h40 grow">Save deal</div>
+                  <div class="box btn h40 grow">Back to shop</div>
+                </div>
+                <div class="box h24 text">External link → provider</div>
+              </div>
+            </div>
+          </div>
+          <div class="footer">
+            <div class="box">Footer: logo + tagline</div>
+            <div class="box">Footer nav</div>
+            <div class="box">Footer note</div>
+          </div>
+        </div>
       </div>
+    </section>
+
+    <!-- ============ SAVED ============ -->
+    <section class="page">
+      <div class="page-title"><h2>Saved deals</h2><span class="route</h2>">saved.html</span></div>
+      <div class="wf">
+        <div class="shell">
+          <div class="topbar">
+            <div class="box logo">Logo</div>
+            <div class="box nav">Nav</div>
+            <div class="box btn menu">Menu</div>
+          </div>
+          <div class="main-area">
+            <div class="box h60">Title + saved count (live status)</div>
+            <div class="box h60">Empty state (shown when no saved offers) + browse CTA</div>
+            <div class="three-col">
+              <div class="col"><div class="box img h60"></div><div class="box h24">Saved card</div></div>
+              <div class="col"><div class="box img h60"></div><div class="box h24">Saved card</div></div>
+              <div class="col"><div class="box img h60"></div><div class="box h24">Saved card</div></div>
+            </div>
+            <div class="box h24 text">Note: stored in this browser only</div>
+          </div>
+          <div class="footer">
+            <div class="box">Footer: logo + tagline</div>
+            <div class="box">Footer nav</div>
+            <div class="box">Footer note</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SUBMIT / CONTACT ============ -->
+    <section class="page">
+      <div class="page-title"><h2>Submit</h2> a deal / Contact</h2><span class="route">submit.html · contact.html</span></div>
+      <div class="wf">
+        <div class="shell">
+          <div class="topbar">
+            <div class="box logo">Logo</div>
+            <div class="box nav">Nav</div>
+            <div class="box btn menu">Menu</div>
+          </div>
+          <div class="main-area">
+            <div class="box h40">Page title</div>
+            <div class="two-col">
+              <div class="col">
+                <div class="box h24">Form intro</div>
+                <div class="box h24">Label + input: Shop name</div>
+                <div class="box h24">Label + input: Offer title</div>
+                <div class="box h24">Select: Category</div>
+                <div class="box h24">Select: Who is it for</div>
+                <div class="box h24">Input: Valid until (date)</div>
+                <div class="box h24">Input: Email</div>
+                <div class="box btn h40">Send deal</div>
+              </div>
+              <div class="col">
+                <div class="box h60">Aside: Contact + address</div>
+                <div class="box h60 text">Note: backend in Part 2</div>
+              </div>
+            </div>
+          </div>
+          <div class="footer">
+            <div class="box">Footer note</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="page">
+      <div class="page-title"><h2>About</h2><span class="route">about.html</span></div>
+     </h2> <div class="wf">
+        <div class="shell">
+          <div class="topbar">
+            <div class="box logo">Logo</div>
+            <div class="box nav">Nav</div>
+            <div class="box btn menu">Menu</div>
+          </div>
+          <div class="main-area">
+            <div class="two-col">
+              <div class="col">
+                <div class="box h60">Hero: eyebrow + H1 + intro</div>
+                <div class="box btn h40 w60">Explore offers CTA</div>
+              </div>
+              <div class="box img h140">Concept image + caption</div>
+            </div>
+            <div class="box h60">Our purpose section</div>
+            <div class="box text">Our values</div>
+            <div class="four-col">
+              <div class="box h60">01 Value</div>
+              <div class="box h60">02 Value</div>
+              <div class="box h60">03 Value</div>
+              <div class="box h60">04 Value</div>
+            </div>
+            <div class="box h40">Disclaimer note</div>
+          </div>
+          <div class="footer">
+            <div class="box">Footer: logo + tagline</div>
+            <div class="box">Footer nav</div>
+            <div class="box">Footer note</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ISIC / STUDENT PLAN ============ -->
+    <section class="page">
+      <div class="page-title"><h2>Student plan / ISIC</h2</h2>><span class="route">isic.html</span></div>
+      <div class="wf">
+        <div class="shell">
+          <div class="topbar">
+            <div class="box logo">Logo</div>
+            <div class="box nav">Nav</div>
+            <div class="box btn menu">Menu</div>
+          </div>
+          <div class="main-area">
+            <div class="box h40">Title: Register your ISIC card</div>
+            <div class="box h60">Step 1 callout — Register with ISIC + external CTA</div>
+            <div class="box h90">Step 2 demo panel — checkbox + simulate verification button + status</div>
+            <div class="box h24 text">Links: Browse offers · View saved deals</div>
+          </div>
+          <div class="footer">
+            <div class="box">Footer: logo + tagline</div>
+            <div class="box">Footer nav</div>
+            <div class="box">Footer note</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="note">
+      <strong>Notes:</strong> Header/footer are</strong> shared across all pages. The two form pages share one layout
+      (<code></code>submit.html</code> and <code>contact.html#submit</code>). Cards</code> reuse the same media-on-top /
+      text-below pattern used in <code>index.html</code></code> and <code>deals</code>.html</code>. Responsive grids collapse
+      to fewer columns on smaller screens.
     </div>
-  </section>
 
-  <section class="page">
-    <h2>Deal detail <small>deal.html</small></h2>
-    <div class="wf">
-      <div class="box h24">Top bar: logo + nav</div>
-      <div class="row">
-        <div class="box img h120">Image</div>
-        <div class="box h120">Title + facts + save button</div>
-      </div>
-      <div class="footer">
-        <div class="box">Footer</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="page">
-    <h2>Saved deals <small>saved.html</small></h2>
-    <div class="wf">
-      <div class="box h24">Top bar: logo + nav</div>
-      <div class="box h40">Title + count</div>
-      <div class="row">
-        <div class="box h60">Saved card</div>
-        <div class="box h60">Saved card</div>
-        <div class="box h60">Saved card</div>
-      </div>
-      <div class="footer">
-        <div class="box">Footer</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="page">
-    <h2>Submit / Contact <small>submit.html · contact.html</small></h2>
-    <div class="wf">
-      <div class="box h24">Top bar: logo + nav</div>
-      <div class="row">
-        <div class="box h120">Form (inputs + send button)</div>
-        <div class="box h120">Contact info</div>
-      </div>
-      <div class="footer">
-        <div class="box">Footer</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="page">
-    <h2>About <small>about.html</small></h2>
-    <div class="wf">
-      <div class="box h24">Top bar: logo + nav</div>
-      <div class="row">
-        <div class="box h60">Intro text</div>
-        <div class="box img h60">Image</div>
-      </div>
-      <div class="box h60">Purpose</div>
-      <div class="box h60">Values (4)</div>
-      <div class="footer">
-        <div class="box">Footer</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="page">
-    <h2>Student plan / ISIC <small>isic.html</small></h2>
-    <div class="wf">
-      <div class="box h24">Top bar: logo + nav</div>
-      <div class="box h40">Title</div>
-      <div class="box h40">Step 1: ISIC registration</div>
-      <div class="box h60">Step 2: demo verification</div>
-      <div class="footer">
-        <div class="box">Footer</div>
-      </div>
-    </div>
-  </section>
-
-</main>
+  </main>
 </body>
 </html>
