@@ -1,13 +1,7 @@
-/* ==========================================================================
-   SlevaMap Prague - behaviour (plain JavaScript, no libraries)
-   ========================================================================== */
 'use strict';
-
-/* Respect users who prefer less motion */
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const verifiedKey = 'slevamap.studentVerified';
 const savedKey = 'slevamap.savedOffers';
-
 const isStudentVerified = () => localStorage.getItem(verifiedKey) === 'true';
 const readSavedOffers = () => {
   const saved = JSON.parse(localStorage.getItem(savedKey) || '[]');
@@ -16,7 +10,6 @@ const readSavedOffers = () => {
 };
 const writeSavedOffers = offers => localStorage.setItem(savedKey, JSON.stringify(offers));
 const offerId = title => title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-
 function offerFromCard(card) {
   const titleLink = card.querySelector('.body h3 a');
   const image = card.querySelector('.media img');
@@ -69,7 +62,6 @@ function requestSave(offer) {
   return true;
 }
 
-/* 1. MOBILE MENU: the button toggles .open and tells screen readers via aria-expanded */
 const menuBtn = document.querySelector('.menu');
 const nav     = document.getElementById('nav');
 if (menuBtn && nav) {
@@ -79,12 +71,11 @@ if (menuBtn && nav) {
   });
 }
 
-/* 2. DEAL FILTERS (deals page only): hide cards that do not match both selects */
 const list = document.getElementById('list');
 if (list) {
   const cat   = document.getElementById('cat');
   const aud   = document.getElementById('aud');
-  const count = document.getElementById('count');           /* aria-live text */
+  const count = document.getElementById('count');           
   const categoryNames = {
     grocery: 'Grocery',
     food: 'Food and cafes',
@@ -143,7 +134,7 @@ if (list) {
     }
   });
 
-  /* Links like deals.html#student or #grocery preselect a filter */
+
   const hash = location.hash.slice(1);
   if ((hash === 'student' || hash === 'everyone')
       && [...aud.options].some(option => option.value === hash)) aud.value = hash;
@@ -174,7 +165,6 @@ if (list) {
   apply();
 }
 
-/* 3. SAVING DEALS: student status is required before an offer can be saved */
 document.querySelectorAll('.deal').forEach(card => {
   const body = card.querySelector('.body');
   if (!body) return;
@@ -242,7 +232,7 @@ if (detail && detailSave) {
   });
 }
 
-/* 4. ISIC demo flow: do not present this local confirmation as real verification */
+
 const verificationForm = document.getElementById('verification-form');
 if (verificationForm) {
   verificationForm.addEventListener('submit', event => {
@@ -269,7 +259,6 @@ if (verificationForm) {
   });
 }
 
-/* 5. SAVED PAGE: list offers and clearly show their saved state */
 const savedList = document.getElementById('saved-list');
 if (savedList) {
   const empty = document.getElementById('saved-empty');
@@ -291,7 +280,7 @@ if (savedList) {
       }
       const image = document.createElement('img');
       image.src = offer.image;
-      image.alt = '';
+      image.alt = '';  
       image.loading = 'lazy';
       imageLink.append(image);
 
@@ -330,8 +319,7 @@ if (savedList) {
   renderSaved();
 }
 
-/* 3. SCROLL REVEAL: elements fade in once when they enter the screen.
-      --i gives each item a small delay so a row appears one by one. */
+
 const targets = document.querySelectorAll('.deal, .tile, .steps li, .stats li, section > h2, .authors li, .grid > li');
 if (!reduce && 'IntersectionObserver' in window) {
   const io = new IntersectionObserver(entries => {
@@ -341,8 +329,6 @@ if (!reduce && 'IntersectionObserver' in window) {
   }, { threshold: .15 });
   targets.forEach((el, i) => { el.classList.add('reveal'); el.style.setProperty('--i', i % 3); io.observe(el); });
 }
-
-/* 6. COUNTERS: numbers in .stats count up from 0 when visible (data-count = end value) */
 document.querySelectorAll('[data-count]').forEach(el => {
   const end = +el.dataset.count, suffix = el.dataset.suffix || '';
   if (reduce) { el.textContent = end + suffix; return; }
@@ -351,15 +337,14 @@ document.querySelectorAll('[data-count]').forEach(el => {
     obs.disconnect();
     const t0 = performance.now(), ms = 1400;
     const tick = now => {
-      const p = Math.min((now - t0) / ms, 1);                /* progress 0 to 1 */
-      el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))) + suffix;   /* ease-out curve */
+      const p = Math.min((now - t0) / ms, 1);                
+      el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))) + suffix;   
       if (p < 1) requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
   }).observe(el);
 });
 
-/* 7. CARD TILT: cards turn slightly towards the pointer (mouse only, not touch) */
 if (!reduce && matchMedia('(hover: hover)').matches) {
   document.querySelectorAll('.deal').forEach(card => {
     card.addEventListener('pointermove', e => {
@@ -374,7 +359,6 @@ if (!reduce && matchMedia('(hover: hover)').matches) {
   });
 }
 
-/* 8. STICKY HEADER + PROGRESS BAR: one scroll listener does both jobs */
 const header = document.querySelector('.top');
 const bar    = Object.assign(document.createElement('div'), { id: 'progress' });
 document.body.prepend(bar);
